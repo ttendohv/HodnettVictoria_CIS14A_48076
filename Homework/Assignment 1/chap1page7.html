@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>A Quick Dip into JavaScript</title>
+		
+		
+	</head>
+	
+	<body>
+		<script type = "text/javascript">
+			//I added in extra code to see the javascript actually work.
+			
+			var price = 28.99;
+			var discount = 10;
+			var total = price - (price * discount / 100);
+			if(total > 25){
+				
+				freeShipping();
+				function freeShipping() {
+					document.write("Free shipping!");
+				}
+			}
+			
+			var count = 10;
+			while(count > 0){
+				juggle();
+				function juggle() {
+					count = 0;
+				}
+				count = count - 1;
+			}
+			
+			var dog = {name: "Rover", weight: 35};
+			if(dog.weight > 30){
+				alert("WOOF WOOF");
+			}else{
+				alert("woof woof");
+			}
+			
+			var circleRadius = 20;
+			var circleArea = Math.PI * (circleRadius * circleRadius);
+			alert("Circle area = " + circleArea);
+			
+		</script>
+	</body>
+
+</html>
