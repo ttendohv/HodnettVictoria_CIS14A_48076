@@ -1,0 +1,40 @@
+<script type = "text/javascript">
+	/*
+		Victoria Hodnett
+		September 15, 2014
+		Purpose: Assignment 2, Straight time, double time, triple time
+	*/
+</script>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Paycheck</title>
+</head>
+
+<body>
+<script type = "text/javascript">
+	//Declare and initialize variables
+	var hours = Math.floor(Math.random()*20 + 30); // Hours worked
+	var payRate = 10; //$'s per hour
+	var dblt=20; // Hour which double time starts
+	var trplt=40; // Hour which triple time starts
+	var payChk; //Declaration of paycheck in $'s
+	//Output input
+	document.write("<h1>Hours worked = " + hours + "</h1>");
+	document.write("<h1>Pay rate = $" + payRate + "</h1>");
+	document.write("<h1>Double time start = " + dblt + " hours</h1>");
+	document.write("<h1>Triple time start = " + trplt + " hours</h1>");
+	//Determine paycheck
+	if(hours<=dblt)payChk = hours * payRate;
+	if(hours<=trplt&&hours>dblt)payChk = hours * payRate + ((hours-dblt) * payRate);
+	if(hours>trplt)payChk = hours * payRate + (dblt * payRate) + (2 * (hours-trplt) * payRate);
+	//Output paycheck
+	//payChk can be seen outside scope in scripted languages
+	payChk = payChk.toFixed(2);
+	document.write("<h1>Paycheck = $" + payChk + "</h1>");
+	
+</script>
+</body>
+</html>
