@@ -1,0 +1,58 @@
+<script type="text/javascript">
+	/*
+		Victoria Hodnett
+		September 15, 2014
+		Purpose: Savings Table with For Loop
+	*/
+</script>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Retirement Account</title>
+</head>
+
+<body>
+<h1>Retirement Table</h1>
+<script type="text/javascript">
+	//Setup the savings tables
+	var balance = 100; //unit = $'s
+	var intRate = 5; //unit = % rate, yearly
+	var deposit = 500; //unit = $'s
+	var str="";
+	//Output Initial Conditions
+	document.write("<p>Initial Balance = $"+balance+"</p>");
+	document.write("<p>Interest Rate = "+intRate+"%</p>");
+	document.write("<p>Yearly Deposit = $"+deposit+"</p>");
+</script>
+<table width="200" border="1">
+  <tr>
+    <th>Year</th>
+    <th>Savings</th>
+  </tr>
+
+<script type="text/javascript">
+	//Generate a table
+	var year=1;
+	//for(var year=1;year<=50;year++){
+	while(year<=50){
+		str+="<tr>";
+		str+=("<td>"+year+"</td>");
+		//Calculate the balance
+		balance*=(1+intRate/100);
+		balance+=deposit;
+		balance=balance.toFixed(2);
+		str+=("<td>"+balance+"</td>");
+		str+="</tr>";
+		
+		year++;
+	}
+	//Output string
+	document.write(str);
+	
+</script>
+
+</table>
+</body>
+</html>

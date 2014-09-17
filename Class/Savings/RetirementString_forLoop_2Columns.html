@@ -1,0 +1,61 @@
+<script type="text/javascript">
+	/*
+		Victoria Hodnett
+		September 15, 2014
+		Purpose: Savings Table with For Loop
+	*/
+</script>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Retirement Account</title>
+</head>
+
+<body>
+<h1>Retirement Table</h1>
+<script type="text/javascript">
+	//Setup the savings tables
+	var balance1 = 0; //unit = $'s
+	var balance2 = 0; //unit = $'s
+	var intRate1 = 5; //unit = % rate, yearly
+	var intRate2 = 6; //unit = % rate, yearly
+	var deposit = 12000; //unit = $'s
+	var str="";
+	//Output Initial Conditions
+	document.write("<p>Initial Balance = $"+balance+"</p>");
+	document.write("<p>Interest Rate = "+intRate+"%</p>");
+	document.write("<p>Yearly Deposit = $"+deposit+"</p>");
+</script>
+<table width="200" border="1">
+  <tr>
+    <th>Year</th>
+    <th>Savings at 5% ($)</th>
+    <th>Savings at 6% ($)</th>
+  </tr>
+
+<script type="text/javascript">
+	//Generate a table
+	for(var year=1;year<=50;year++){
+		str+="<tr>";
+		str+=("<td>"+year+"</td>");
+		//Calculate the balance
+		balance1*=(1+intRate1/100);
+		balance1+=deposit;
+		balance1=balance1.toFixed(2);
+		str+=("<td>"+balance1+"</td>");
+		balance2*=(1+intRate2/100);
+		balance2+=deposit;
+		balance2=balance2.toFixed(2);
+		str+=("<td>"+balance2+"</td>");
+		str+="</tr>";
+	}
+	//Output string
+	document.write(str);
+	
+</script>
+
+</table>
+</body>
+</html>
