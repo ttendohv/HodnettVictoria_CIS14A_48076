@@ -1,0 +1,75 @@
+<script type="text/javascript">
+	/*
+		Victoria Hodnett
+		September 15, 2014
+		Purpose: Savings Table with For Loop
+	*/
+</script>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Retirement Account</title>
+</head>
+
+<body>
+<h1>Retirement Table</h1>
+<script type="text/javascript">
+	//Setup the savings tables
+	var balance = 0; //unit = $'s
+	var intRate = 5; //unit = % rate, yearly
+	var deposit = 7500; //unit = $'s
+	var str="";
+	//Output Initial Conditions
+	document.write("<p>Initial Balance = $"+balance+"</p>");
+	document.write("<p>Interest Rate = "+intRate+"%</p>");
+	document.write("<p>Yearly Deposit = $"+deposit+"</p>");
+	//Declare arrays
+	var years=[];
+	var savings=[];
+	var interest=[];
+	var yearDep=[];
+	//Populate arrays
+	years[0]=0;
+	savings[0]=balance;
+	interest[0]=0;
+	yearDep[0]=0;
+	for(var year=1;year<=50;year++){
+		years[year]=year;
+		//Calculate savings/balance
+		interest[year]=savings[year-1]*(intRate/100);
+		interest[year]=parseFloat(interest[year].toFixed(2));
+		savings[year]=savings[year-1]+interest[year];
+		yearDep[year]=deposit;
+		savings[year]+=yearDep[year];
+		savings[year]=parseFloat(savings[year].toFixed(2));
+	}
+	
+</script>
+<table width="200" border="1">
+  <tr>
+    <th>Year</th>
+    <th>Savings</th>
+    <th>Interest</th>
+    <th>Deposit</th>
+  </tr>
+
+<script type="text/javascript">
+	//Generate a table
+	for(var year=1;year<=50;year++){
+		str+="<tr>";
+		str+=("<td>"+years[year]+"</td>");
+		str+=("<td>"+savings[year].toFixed(2)+"</td>");
+		str+=("<td>"+interest[year].toFixed(2)+"</td>");
+		str+=("<td>"+yearDep[year].toFixed(2)+"</td>");
+		str+="</tr>";
+	}
+	//Output string
+	document.write(str);
+	
+</script>
+
+</table>
+</body>
+</html>
