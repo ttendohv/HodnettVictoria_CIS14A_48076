@@ -1,0 +1,78 @@
+<script type="text/javascript">
+	/*
+		Victoria Hodnett
+		September 15, 2014
+		Purpose: Savings Table with For Loop
+	*/
+</script>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Retirement Account</title>
+</head>
+
+<body>
+<h1>Retirement Table</h1>
+<script type="text/javascript">
+	//Setup the savings tables
+	var balance = 0; //unit = $'s
+	var intRate = 5; //unit = % rate, yearly
+	var deposit = 7500; //unit = $'s
+	var str="";
+	//Output Initial Conditions
+	document.write("<p>Initial Balance = $"+balance+"</p>");
+	document.write("<p>Interest Rate = "+intRate+"%</p>");
+	document.write("<p>Yearly Deposit = $"+deposit+"</p>");
+	//Declare table
+	var retTable=[];
+	var cols=4;
+	for(var col=0;col<cols;col++){
+		retTable[col]=[];
+	}
+	//Populate arrays
+	retTable[0][0]=0;//year
+	retTable[1][0]=balance;//savings
+	retTable[2][0]=0;//interest
+	retTable[3][0]=0;//yearly deposit
+	for(var year=1;year<=50;year++){
+		retTable[0][year]=year;
+		//Calculate savings/balance
+		retTable[2][year]=retTable[1][year-1]*(intRate/100);
+		retTable[2][year]=parseFloat(retTable[2][year].toFixed(2));
+		retTable[1][year]=retTable[1][year-1]+retTable[2][year];
+		retTable[3][year]=deposit;
+		retTable[1][year]+=retTable[3][year];
+		retTable[1][year]=parseFloat(retTable[1][year].toFixed(2));
+	}
+	
+</script>
+<table width="200" border="1">
+  <tr>
+    <th>Year</th>
+    <th>Savings</th>
+    <th>Interest</th>
+    <th>Deposit</th>
+  </tr>
+
+<script type="text/javascript">
+	//Generate a table
+	for(var year=1;year<=50;year++){
+		str+="<tr>";
+		str+=("<td>"+retTable[0][year]+"</td>");
+		for(var col=1;col<cols;col++){
+			str+=("<td>"+retTable[col][year].toFixed(2)+"</td>");
+		}
+		str+="</tr>";
+	}
+	//Output string
+	document.write(str);
+	document.write("<p>Number of rows: "+retTable[0].length+" "+typeof retTable[0]+"</p>");
+	document.write("<p>Number of columns: "+retTable.length+" "+typeof retTable+"</p>");
+	
+</script>
+
+</table>
+</body>
+</html>
