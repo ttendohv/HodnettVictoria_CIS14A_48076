@@ -1,0 +1,117 @@
+<script type = "text/javascript">
+	/*
+		Victoria Hodnett
+		September 15, 2014
+		Purpose: Assignment 2, Straight time, double time, triple time
+	*/
+</script>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Paycheck</title>
+<script type="text/javascript">
+	var findPayCheck = function(hours,payRate){
+		var dblt=20; // Hour which double time starts
+		var trplt=40; // Hour which triple time starts
+		if(hours<=dblt){
+			return hours * payRate;
+		}else if(hours<=trplt){
+			return hours * payRate + ((hours-dblt) * payRate);
+		}else{
+			return hours * payRate + (dblt * payRate) + (2 * (hours-trplt) * payRate);
+		}
+	}
+</script>
+</head>
+
+<body>
+<table width="450" border="1">
+<tr>
+	<th></th>
+	<th>Hours</th>
+    <th>Pay Rate</th>
+    <th>Gross Pay</th>
+    <th>Taxes</th>
+    <th>Net Pay</th>
+</tr>
+<script type = "text/javascript">
+	//Declare and initialize variables
+	var hours = Math.floor(Math.random()*20 + 30); // Hours worked
+	var payRate = 10; //$'s per hour
+	var dblt=20; // Hour which double time starts
+	var trplt=40; // Hour which triple time starts
+	var payChk; //Declaration of paycheck in $'s
+	//Output input
+	document.write("<h1>Hours worked = " + hours + "</h1>");
+	document.write("<h1>Pay rate = $" + payRate + "</h1>");
+	document.write("<h1>Double time start = " + dblt + " hours</h1>");
+	document.write("<h1>Triple time start = " + trplt + " hours</h1>");
+	//Determine paycheck
+	if(hours<=dblt)payChk = hours * payRate;
+	else if(hours<=trplt)payChk = hours * payRate + ((hours-dblt) * payRate);
+	else payChk = hours * payRate + (dblt * payRate) + (2 * (hours-trplt) * payRate);
+	//Output paycheck
+	//payChk can be seen outside scope in scripted languages
+	payChk = payChk.toFixed(2);
+	document.write("<h1>Paycheck = $" + payChk + "</h1>");
+	
+	//Straight Time
+	document.write("<tr>");
+	document.write("<td rowspan='21'><b>Straight Time</b></td>");
+	document.write("<td>"+0+"</td>");
+	document.write("<td>"+payRate+"</td>");
+	document.write("<td>"+findPayCheck(0,payRate)+"</td>");
+	document.write("<td>Taxes</td>");
+	document.write("<td>Net Pay</td>");
+	document.write("</tr>");
+	for(var i=1;i<=20;i++){
+		document.write("<tr>");
+		document.write("<td>"+i+"</td>");
+		document.write("<td>"+payRate+"</td>");
+		document.write("<td>"+findPayCheck(i,payRate)+"</td>");
+		document.write("<td>Taxes</td>");
+		document.write("<td>Net Pay</td>");
+		document.write("</tr>");
+	}
+	//Double Time ** maybe use an if statement instead of separating it out like this
+	document.write("<tr>");
+	document.write("<td rowspan='20'><b>Double Time</b></td>");
+	document.write("<td>"+21+"</td>");
+	document.write("<td>"+payRate+"</td>");
+	document.write("<td>"+payChk+"</td>");
+	document.write("<td>Taxes</td>");
+	document.write("<td>Net Pay</td>");
+	document.write("</tr>");
+	for(var i=22;i<=40;i++){
+		document.write("<tr>");
+		document.write("<td>"+i+"</td>");
+		document.write("<td>"+payRate+"</td>");
+		document.write("<td>"+payChk+"</td>");
+		document.write("<td>Taxes</td>");
+		document.write("<td>Net Pay</td>");
+		document.write("</tr>");
+	}
+	//Triple Time
+	document.write("<tr>");
+	document.write("<td rowspan='32'><b>Triple Time</b></td>");
+	document.write("<td>"+41+"</td>");
+	document.write("<td>"+payRate+"</td>");
+	document.write("<td>"+payChk+"</td>");
+	document.write("<td>Taxes</td>");
+	document.write("<td>Net Pay</td>");
+	document.write("</tr>");
+	for(var i=42;i<=72;i++){
+		document.write("<tr>");
+		document.write("<td>"+i+"</td>");
+		document.write("<td>"+payRate+"</td>");
+		document.write("<td>"+payChk+"</td>");
+		document.write("<td>Taxes</td>");
+		document.write("<td>Net Pay</td>");
+		document.write("</tr>");
+	}
+</script>
+</table>
+</body>
+</html>
