@@ -38,13 +38,24 @@
 </tr>
 <script type = "text/javascript">
 	//Declare and initialize variables
-	var payRate = 10; //$'s per hour
-	var payChk; //Declaration of paycheck in $'s
+	var hours = [];
+	var payRate = []; //$'s per hour
+	var payChk = []; //Declaration of paycheck in $'s
 	var taxRate = 10;//%
-	var taxes;
+	var taxes = [];
+	var netPay = [];
+	
 	//Output input
-	document.write("<h1>Pay rate = $" + payRate + "</h1>");
+	document.write("<h1>Pay rate = $10</h1>");
 	document.write("<h1>Tax Rate = " + taxRate + "%");
+	
+	for(var i=0;i<=72;i++){
+		hours[i]=i;
+		payRate[i]=10;
+		payChk[i]=findPayCheck(i,payRate[i]);
+		taxes[i]=payChk[i]*(taxRate/100);
+		netPay[i]=payChk[i]-taxes[i];
+	}
 	
 	for(var i=0;i<=72;i++){
 		document.write("<tr>");
@@ -57,15 +68,11 @@
 		}else{
 			//Do nothing
 		}
-		document.write("<td>"+i+"</td>");
-		document.write("<td>$"+payRate+"</td>");
-		//Determine payChk
-		payChk=findPayCheck(i,payRate);
-		document.write("<td>$"+payChk+"</td>");
-		//Determine taxes
-		taxes=payChk*(taxRate/100);
-		document.write("<td>$"+taxes+"</td>");
-		document.write("<td>$"+(payChk-taxes)+"</td>");
+		document.write("<td>"+hours[i]+"</td>");
+		document.write("<td>$"+payRate[i]+"</td>");
+		document.write("<td>$"+payChk[i]+"</td>");
+		document.write("<td>$"+taxes[i]+"</td>");
+		document.write("<td>$"+netPay[i]+"</td>");
 		document.write("</tr>");
 	}
 	
