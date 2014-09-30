@@ -2,7 +2,7 @@
 	/*
 		Victoria Hodnett
 		September 15, 2014
-		Purpose: Assignment 4, Straight time, double time, triple time with 1D Arrays
+		Purpose: Assignment 5, Straight time, double time, triple time with 2D array
 	*/
 </script>
 
@@ -38,23 +38,25 @@
 </tr>
 <script type = "text/javascript">
 	//Declare and initialize variables
-	var hours = [];
-	var payRate = []; //$'s per hour
-	var payChk = []; //Declaration of paycheck in $'s
+	var payRate = 10; //$'s per hour
 	var taxRate = 10;//%
-	var taxes = [];
-	var netPay = [];
+	//Declare 2D Array
+	var payChkTable=[];
+	var cols=5;
+	for(var col=0;col<cols;col++){
+		payChkTable[col]=[];
+	}
 	
 	//Output input
-	document.write("<h1>Pay rate = $10</h1>");
+	document.write("<h1>Pay rate = " + payRate + "</h1>");
 	document.write("<h1>Tax Rate = " + taxRate + "%");
 	
 	for(var i=0;i<=72;i++){
-		hours[i]=i;
-		payRate[i]=10;
-		payChk[i]=findPayCheck(i,payRate[i]);
-		taxes[i]=payChk[i]*(taxRate/100);
-		netPay[i]=payChk[i]-taxes[i];
+		payChkTable[0][i]=i;//hours
+		payChkTable[1][i]=payRate;//pay rate
+		payChkTable[2][i]=findPayCheck(i,payRate);//pay check
+		payChkTable[3][i]=payChkTable[2][i]*(taxRate/100);//taxes
+		payChkTable[4][i]=payChkTable[2][i]-payChkTable[3][i];//net pay
 	}
 	
 	for(var i=0;i<=72;i++){
@@ -68,11 +70,11 @@
 		}else{
 			//Do nothing
 		}
-		document.write("<td>"+hours[i]+"</td>");
-		document.write("<td>$"+payRate[i]+"</td>");
-		document.write("<td>$"+payChk[i]+"</td>");
-		document.write("<td>$"+taxes[i]+"</td>");
-		document.write("<td>$"+netPay[i]+"</td>");
+		document.write("<td>"+payChkTable[0][i]+"</td>");
+		document.write("<td>$"+payChkTable[1][i]+"</td>");
+		document.write("<td>$"+payChkTable[2][i]+"</td>");
+		document.write("<td>$"+payChkTable[3][i]+"</td>");
+		document.write("<td>$"+payChkTable[4][i]+"</td>");
 		document.write("</tr>");
 	}
 	
