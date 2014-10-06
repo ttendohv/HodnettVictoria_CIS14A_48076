@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Get Paycheck from Form</title>
+<script type="text/javascript" src="getForm.js">
+</script>
+<script type="text/javascript" src="payCheckTable.js">
+</script>
+</head>
+
+<body>
+<script type="text/javascript">
+	//Get information from form
+	var url=location.href;
+	var $_GET=getForm(url);
+	//for(property in $_GET){
+	//	document.write(property+"="+$_GET[property]+"<br>");
+	//}
+	
+	//Generate paycheck table
+	//Declare and initialize variables
+	var hours = $_GET["Hours"];
+	var doubleTime = $_GET["DoubleTime"];
+	var tripleTime = $_GET["TripleTime"];
+	var payRate = $_GET["PayRate"]; //$'s per hour
+	var taxRate = $_GET["Taxes"];//%
+	
+	//Declare 2D Array
+	var payChkTable=[];
+	var cols=5;
+	for(var col=0;col<cols;col++){
+		payChkTable[col]=[];
+	}
+	
+	//Output input
+	document.write("<h1>Pay rate = " + payRate + "</h1>");
+	document.write("<h1>Tax Rate = " + taxRate + "%");
+	
+	for(var i=0;i<=hours;i++){
+		payChkTable[0][i]=i;//hours
+		payChkTable[1][i]=payRate;//pay rate
+		payChkTable[2][i]=findPayCheck(i,payRate,doubleTime,tripleTime);//pay check
+		payChkTable[3][i]=payChkTable[2][i]*(taxRate/100);//taxes
+		payChkTable[4][i]=payChkTable[2][i]-payChkTable[3][i];//net pay
+	}
+	//Output paycheck table
+	print(hours,payChkTable);
+</script>
+</body>
+</html>

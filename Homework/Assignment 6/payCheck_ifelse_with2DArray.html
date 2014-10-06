@@ -1,0 +1,84 @@
+<script type = "text/javascript">
+	/*
+		Victoria Hodnett
+		September 15, 2014
+		Purpose: Assignment 5, Straight time, double time, triple time with 2D array
+	*/
+</script>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Paycheck</title>
+<script type="text/javascript">
+	var findPayCheck = function(hours,payRate){
+		var dblt=20; // Hour which double time starts
+		var trplt=40; // Hour which triple time starts
+		if(hours<=dblt){
+			return hours * payRate;
+		}else if(hours<=trplt){
+			return hours * payRate + ((hours-dblt) * payRate);
+		}else{
+			return hours * payRate + (dblt * payRate) + (2 * (hours-trplt) * payRate);
+		}
+	}
+</script>
+</head>
+
+<body>
+<table width="450" border="1">
+<tr>
+	<th></th>
+	<th>Hours</th>
+    <th>Pay Rate</th>
+    <th>Gross Pay</th>
+    <th>Taxes (%)</th>
+    <th>Net Pay</th>
+</tr>
+<script type = "text/javascript">
+	//Declare and initialize variables
+	var payRate = 10; //$'s per hour
+	var taxRate = 10;//%
+	//Declare 2D Array
+	var payChkTable=[];
+	var cols=5;
+	for(var col=0;col<cols;col++){
+		payChkTable[col]=[];
+	}
+	
+	//Output input
+	document.write("<h1>Pay rate = " + payRate + "</h1>");
+	document.write("<h1>Tax Rate = " + taxRate + "%");
+	
+	for(var i=0;i<=72;i++){
+		payChkTable[0][i]=i;//hours
+		payChkTable[1][i]=payRate;//pay rate
+		payChkTable[2][i]=findPayCheck(i,payRate);//pay check
+		payChkTable[3][i]=payChkTable[2][i]*(taxRate/100);//taxes
+		payChkTable[4][i]=payChkTable[2][i]-payChkTable[3][i];//net pay
+	}
+	
+	for(var i=0;i<=72;i++){
+		document.write("<tr>");
+		if(i==0){
+			document.write("<td rowspan='21'><b>Straight Time</b></td>");
+		}else if(i==21){
+			document.write("<td rowspan='20'><b>Double Time</b></td>");
+		}else if(i==41){
+			document.write("<td rowspan='32'><b>Triple Time</b></td>");
+		}else{
+			//Do nothing
+		}
+		document.write("<td>"+payChkTable[0][i]+"</td>");
+		document.write("<td>$"+payChkTable[1][i]+"</td>");
+		document.write("<td>$"+payChkTable[2][i]+"</td>");
+		document.write("<td>$"+payChkTable[3][i]+"</td>");
+		document.write("<td>$"+payChkTable[4][i]+"</td>");
+		document.write("</tr>");
+	}
+	
+</script>
+</table>
+</body>
+</html>
