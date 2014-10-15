@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Create the _Get Object</title>
+<script type="text/javascript" src="getForm.js">
+</script>
+</head>
+
+<body>
+<script type="text/javascript">
+	var url=location.href;
+	var $_GET=getForm(url);
+	for(property in $_GET){
+		document.write(property+"="+$_GET[property]+"<br>");
+	}
+	//Stringify original
+	var text = JSON.stringify($_GET);
+	document.write("<p>"+text+"</p>");
+	//Added text property
+	$_GET.text=text;
+	var text2 = JSON.stringify($_GET);
+	document.write("<p>"+text2+"</p>");
+	//Parsed back to original
+	var obj = JSON.parse(text2);
+	for(property in obj){
+		document.write(property+"="+obj[property]+"<br>");
+	}
+	//Output text3 from getForm.js file
+	document.write("<br>");
+	for(property in text3){
+		document.write(property+"="+text3[property]+"<br>");
+	}
+</script>
+</body>
+</html>
