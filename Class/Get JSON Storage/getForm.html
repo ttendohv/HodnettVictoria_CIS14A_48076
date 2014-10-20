@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Create the _Get Object</title>
+<script type="text/javascript" src="getForm.js">
+</script>
+</head>
+
+<body>
+<script type="text/javascript">
+	var url=location.href;
+	var $_GET=getForm(url);
+	for(property in $_GET){
+		document.write(property+"="+$_GET[property]+"<br>");
+	}
+	//Stringify original
+	var text = JSON.stringify($_GET);
+	document.write("<p>"+text+"</p>");
+	//Local storage
+	localStorage.setItem("trial1",text);
+	var lsText=localStorage.getItem("trial1");
+	var obj = JSON.parse(lsText);
+	for(property in obj){
+		document.write(property+"="+obj[property]+"<br>");
+	}
+	//Session storage
+	sessionStorage.setItem("trial2",text);
+	var lsText2=sessionStorage.getItem("trial2");
+	var obj2 = JSON.parse(lsText2);
+	for(property in obj2){
+		document.write(property+"="+obj2[property]+"<br>");
+	}
+</script>
+</body>
+</html>
