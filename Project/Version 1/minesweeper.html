@@ -15,11 +15,15 @@
     var rows = 9;
     //var choice;
 	var mines=10;
-    var board;
-	//var soltn=[];
-	//for(var i=0;i<cols;i++){
-	//	soltn[i]=[];
-	//}
+    var board=[];
+	for(var i=0;i<cols;i++){
+		board[i]=[];
+	}
+	var soltn=[];
+	for(var i=0;i<cols;i++){
+		soltn[i]=[];
+	}
+	readSol(soltn,rows,cols);
     //Start game
 	alert("Welcome to Minesweeper!\nClick OK to start!");
     /*
@@ -33,16 +37,15 @@
     */
 	//chsLevel(choice,mines,soltn,actlRow,actlCol);
     //Initialize board
-    board=initial(rows,cols);
-    //Display board
-	document.write("<table>");
-	document.write("<tr><th>Test</th><th></th></tr>");
-    display(board,rows,cols);
-	document.write("</table>");
+    initial(board,rows,cols);
+	//Display board
+	//document.write("<table>");
+	//document.write("<tr><th>Test</th><th></th></tr>");
+    display(board,soltn,rows,cols);
+	//document.write("</table>");
     //Start play
     //play(board,soltn,actlRow,actlCol,mines);
 </script>
-
 </body>
 
 </html>

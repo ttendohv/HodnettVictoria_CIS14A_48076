@@ -1,23 +1,81 @@
-﻿//Initialize game board
+﻿var clickable = true;
+
+//Initialize game board
 //Input
 //      board, row, col
 //Output
 //      board
-function initial(row,col){
-	var board=[];
-	for(var i=0;i<col;i++){
-		board[i]=[];
-	}
+function initial(board,row,col){
     for(var n=0; n<row; n++){
         for(var x=0; x<col; x++){
-            board[x][n] = 'M';
+            board[x][n] = '<img src="./images/grid.png">';
         }
     }
-    //Update board
-    return board;
+}
+
+//Display game board
+//Input
+//      board, rows, cols
+//Output
+//      none
+/*Place board in a table instead for now */
+function display(board,soltn,rows,cols){
+	document.write('<h1 align="center">MINESWEEPER</h1>');
+    //Print out A-I for rows, 1-9 for columns
+	document.write('<table align="center" border="1">');
+    document.write("<tr>");
+	document.write("<th></th>");
+	for(var i=0;i<cols;i++){
+		document.write("<th>"+(i+1)+"</th>");
+	}
+	document.write("</tr>");
+	for(var r=0;r<rows;r++){
+		document.write("<tr>");
+		document.write("<th>"+(String.fromCharCode('A'.charCodeAt() + r))+"</th>");
+		for(var c=0;c<cols;c++){
+			document.write('<a href="javascript:revealImage('+r+','+c+')"'); 
+			document.write('onClick="revealImage('+board+','+soltn+','+r+','+c+')">');
+			document.write("<td>"+(board[c][r])+"</a></td>");
+		}
+		document.write("</tr>");
+	}
+	document.write("</table>");
+}
+
+//Fill in solution board
+//Input
+//      game, rows, cols
+//Output
+//      none
+//      reference game
+function readSol(game,rows,cols){
+    //Need to read in from file, but display dummy for now
+	for(var i=0; i<rows; i++){
+        for(var j=0; j<cols; j++){
+            game[i][j]='<img src="./images/mine.png" width="64" height="64">';
+        }
+    }
+    //Test input
+//    for(int i=0; i<ROWS; i++){
+//        for(int j=0; j<COL; j++){
+//            cout << game[i][j];
+//        }
+//        cout << endl;
+//    }
+}
+
+function revealImage(board,soltn,row,col){
+	if(board[col][row]==soltn[col][row])
+		clickable=false;
+	if(clickable){ 
+		board[col][row] = soltn[col][row];
+	}else{
+		board[col][row] = board[col][row];
+	}
 }
 
 
+/*
 //Begin play
 //Input
 //      board, soltn, row, col, mines
@@ -29,14 +87,14 @@ function play(board,soltn,row,col,mines){
     var num2;//int
     var num3;//int
     var winner;//string
-    /* Need to read in from file in JS
-    ofstream allWnrs; */
+    // Need to read in from file in JS
+    //ofstream allWnrs; 
     var wnnrs = [];//char
     var size = row*col;//int
     var gameOvr;//bool
     var invInpt;//bool
-    /*Need to start time with JS 
-    int begin = time(0);*/
+    //Need to start time with JS 
+    //int begin = time(0);
     do{
         do{
             //Make move
@@ -62,16 +120,16 @@ function play(board,soltn,row,col,mines){
         }
         if(count == ((row*col)-mines)){
             alert("Congratulations! You win!");
-            /*Need to end time with JS
-            int end = time(0);*/
+            //Need to end time with JS
+            //int end = time(0);
             //Print out winners board with flags
             wnrsBrd(soltn,row,col,wnnrs);
             winner = prompt("Please enter your name to record you as a winner: ");
-			/*Append winners to file in JS
-            winner += " ";
-            allWnrs.open("Winners.txt",ios::app);
-            allWnrs << winner << endl;
-            allWnrs.close();*/
+			//Append winners to file in JS
+            //winner += " ";
+            //allWnrs.open("Winners.txt",ios::app);
+            //allWnrs << winner << endl;
+            //allWnrs.close();
             //Display time and score
             points(begin,end,mines,row);
             gameOvr = true;
@@ -104,7 +162,7 @@ function mkMove(num2,num3,rows,cols){
 //Output
 //      none
 //      reference board
-/*What to do.. Need to return both board and boolean*/
+//What to do.. Need to return both board and boolean
 function winLose(board,soltn,rows,cols,num1,num2){
     if (soltn[num1][num2] == '*'){
         board[num1][num2] = soltn[num1][num2];
@@ -118,47 +176,6 @@ function winLose(board,soltn,rows,cols,num1,num2){
     }
 }
 
-//Display game board
-//Input
-//      board, rows, cols
-//Output
-//      none
-/*Place board in a table instead for now */
-function display(board,rows,cols){
-    //Print out A-I for rows, 1-9 for columns
-    document.write("<tr>");
-	for(var i=0;i<cols;i++){
-		document.write("<th>"+(i+1)+"</th>");
-	}
-	document.write("</tr>");
-	for(var n=0;n<rows;n++){
-		document.write("<tr>");
-		document.write("<th>"+(String.fromCharCode('A'.charCodeAt() + n))+"</th>");
-		for(var x=0;x<cols;x++){
-			document.write("<td>"+(board[x][n])+"</td>");
-		}
-		document.write("</tr>");
-	}
-	
-	/*
-	var row = 'A';
-    document.write(" ");
-    for(var i=0; i<cols; i++){
-        document.write((i+1) + "    ");
-    }
-    document.write("<br><br>");
-    //int *r=&rows,*c=&cols;
-    for(var n=0; n<rows; n++){
-        document.write(row +  "   ");
-        for(var x=0; x<cols; x++){
-            document.write(board[n][x] + "   ");
-        }
-        document.write("<br>");
-        row++;
-    }
-    document.write("<br>");
-	*/
-}
 
 
 //Uncover tiles, determine if more than one
@@ -325,7 +342,7 @@ function uncvCnr(board,soltn,rows,num1,num2){
 //Output
 //      none
 //      reference mines, rows, cols
-/*Need to return 3 thing*/
+//Need to return 3 thing
 function chsLevel(choice,mines,soltn,rows,cols){
     //ifstream game;
     switch(choice){
@@ -373,7 +390,7 @@ void readSol(char game[][COL], int rows, int cols, ifstream& mineswp){
 //        }
 //        cout << endl;
 //    }
-}*/
+}
 
 //Display flags on the winners board
 //Input
@@ -422,18 +439,18 @@ function points(begin,end,mines,rows){
         //Subtract 3 points for every 5 seconds over 40
         pts -= (totTime%5) * 3;
     }
-    /*
+    
 	//Display points
-    cout << "You have been awarded " << pts << " points!" << endl;
+    //cout << "You have been awarded " << pts << " points!" << endl;
     //Write points to file
-    ofstream points;
-    points.open("Points.txt",ios::app);
-    points << setw(4);
-    points << pts;
-    points.close();
+    //ofstream points;
+    //points.open("Points.txt",ios::app);
+    //points << setw(4);
+    //points << pts;
+    //points.close();
     
 	//Sort winners
-    srtWnrs();*/
+    //srtWnrs();
 }
 
 /*
