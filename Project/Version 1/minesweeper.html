@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>MINESWEEPER</title>
+<script type="text/javascript" src="functions.js"></script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+	//Declare variables
+	var cols = 9;
+    var rows = 9;
+    //var choice;
+	var mines=10;
+    var board;
+	//var soltn=[];
+	//for(var i=0;i<cols;i++){
+	//	soltn[i]=[];
+	//}
+    //Start game
+	alert("Welcome to Minesweeper!\nClick OK to start!");
+    /*
+	cout << "Welcome to Minesweeper!" << endl;
+    //Choose level
+    cout << "Choose the difficulty by typing in the corresponding "
+           "number:" << endl;
+    cout << "   1) Easy" << endl;
+    cout << "   2) Not so Easy" << endl;
+    cin >> choice;
+    */
+	//chsLevel(choice,mines,soltn,actlRow,actlCol);
+    //Initialize board
+    board=initial(rows,cols);
+    //Display board
+	document.write("<table>");
+	document.write("<tr><th>Test</th><th></th></tr>");
+    display(board,rows,cols);
+	document.write("</table>");
+    //Start play
+    //play(board,soltn,actlRow,actlCol,mines);
+</script>
+
+</body>
+
+</html>
