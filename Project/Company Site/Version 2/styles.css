@@ -5,6 +5,11 @@ body {
 	padding:0;
 }
 
+/*******************
+ *
+ *  Navigation Bar
+ *
+ *******************/
 #menu_wrap {
 	position:relative;
 	/*margin-top:20px;
@@ -93,4 +98,38 @@ body {
 	-moz-border-radius:3px;
 	border-top-right-radius:3px;
 	border-bottom-right-radius:3px
+}
+
+
+/*******************
+ *
+ *  Header
+ *
+ *******************/
+.btn {
+  background: #cedce7;
+  background-image: -webkit-linear-gradient(top, #cedce7, #596a72);
+  background-image: -moz-linear-gradient(top, #cedce7, #596a72);
+  background-image: -ms-linear-gradient(top, #cedce7, #596a72);
+  background-image: -o-linear-gradient(top, #cedce7, #596a72);
+  background-image: linear-gradient(to bottom, #cedce7, #596a72);
+  -webkit-border-radius: 13;
+  -moz-border-radius: 13;
+  border-radius: 13px;
+  text-shadow: 1px 1px 3px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #cedce7;
+  background-image: -webkit-linear-gradient(top, #cedce7, #395e70);
+  background-image: -moz-linear-gradient(top, #cedce7, #395e70);
+  background-image: -ms-linear-gradient(top, #cedce7, #395e70);
+  background-image: -o-linear-gradient(top, #cedce7, #395e70);
+  background-image: linear-gradient(to bottom, #cedce7, #395e70);
+  text-decoration: none;
 }
