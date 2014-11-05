@@ -33,7 +33,7 @@ function display(board,soltn,rows,cols){
 		document.write("<tr>");
 		document.write("<th>"+(String.fromCharCode('A'.charCodeAt() + r))+"</th>");
 		for(var c=0;c<cols;c++){
-			document.write('<a href="javascript:revealImage('+r+','+c+')"'); 
+			document.write('<a href="javascript:revealImage('+board+','+soltn+','+r+','+c+')"'); 
 			document.write('onClick="revealImage('+board+','+soltn+','+r+','+c+')">');
 			document.write("<td>"+(board[c][r])+"</a></td>");
 		}

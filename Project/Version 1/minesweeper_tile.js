@@ -1,20 +1,21 @@
     //Constructor for the Tile class
-	function Tile(r,c){
-		this.row=r;
-		this.col=c;
-		this.back="Cards/"+this.name+this.suit+".jpg";
-		this.solution="";
+	function Tile(num){
+		this.tileNum=num;
+		//this.row=r;
+		//this.col=c;
+		//this.back="Cards/"+this.name+this.suit+".jpg";
+		this.solution='"./images/mine.png" width="64" height="64"';
 	}
 //Create an array of 81 tiles
-	var board=new Array(9);
-	for(var i=0;i<9;i++){
-		board[i]=new Array(9);
-	}
-	for(var i=0;i<9;i++){
-		for(var j=0;j<9;j++){
-			board[i][j]=new Tile(i,j);
-		}
-	}
+	//var board=new Array(9);
+	//for(var i=0;i<9;i++){
+	//	board[i]=new Array(9);
+	//}
+	//for(var i=0;i<9;i++){
+	//	for(var j=0;j<9;j++){
+	//		board[i][j]=new Tile(i,j);
+	//	}
+	//}
 
 //Read in solution
 //Until I find out how to read from file
